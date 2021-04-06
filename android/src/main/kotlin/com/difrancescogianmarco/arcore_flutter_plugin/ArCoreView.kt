@@ -29,6 +29,8 @@ import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.platform.PlatformView
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 class ArCoreView(val activity: Activity, context: Context, messenger: BinaryMessenger, id: Int, private val isAugmentedFaces: Boolean, private val debug: Boolean) : PlatformView, MethodChannel.MethodCallHandler {
     private val methodChannel: MethodChannel = MethodChannel(messenger, "arcore_flutter_plugin_$id")
@@ -242,8 +244,9 @@ class ArCoreView(val activity: Activity, context: Context, messenger: BinaryMess
     }*/
 
     private fun setupLifeCycle(context: Context) {
+
         activityLifecycleCallbacks = object : Application.ActivityLifecycleCallbacks {
-            override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+            override fun onActivityCreated(@NonNull activity: Activity, @Nullable savedInstanceState: Bundle?) {
                 debugLog("onActivityCreated")
 //                maybeEnableArButton()
             }
